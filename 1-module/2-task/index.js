@@ -34,4 +34,3 @@ function sayHello() {
 }
 
 sayHello();
-("");
