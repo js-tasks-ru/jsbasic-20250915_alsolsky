@@ -1,8 +1,8 @@
 function sumSalary(salaries) {
   // ваш код...
-  sum = 0;
+  let sum = 0;
   for (let key in salaries) {
-    p = salaries[key];
+    let p = salaries[key];
 
     if (typeof p !== "number") {
       p = 0;
@@ -12,4 +12,5 @@ function sumSalary(salaries) {
     }
     sum += p;
   }
+  return sum;
 }
