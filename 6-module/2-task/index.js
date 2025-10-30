@@ -24,11 +24,12 @@ export default class ProductCard {
     `);
     const button = card.querySelector('.card__button');
     button.addEventListener('click', () => {
-      const event = new CustomEvent("product-add", {  
-        detail: this.product.id, 
+      const event = new CustomEvent("product-add", { 
+       detail: this.product.id, 
         bubbles: true 
       });
       card.dispatchEvent(event);
+      
     });
     return card;
 
