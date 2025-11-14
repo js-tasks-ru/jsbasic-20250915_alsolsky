@@ -113,8 +113,8 @@ export default class Cart {
   renderModal() {
     // ...ваш код
     this.modal = new Modal();
-    
-    this.modal.setTitle('Your order'); 
+   
+    this.modal.setTitle('Your order');  
     const modalBody = createElement('<div></div>');
 
     this.cartItems.forEach(({ product, count }) => {
@@ -141,7 +141,6 @@ export default class Cart {
         this.updateProductCount(productId, -1);
       } 
     });
-
   }
 
   onProductUpdate(cartItem) {
@@ -168,12 +167,16 @@ export default class Cart {
     } 
     const infoPriceElem = modalBody.querySelector('.cart-buttons__info-price');
     infoPriceElem.textContent = `€${this.getTotalPrice().toFixed(2)}`;
-    
+
   }
+
+  
+
+
 
   onSubmit(event) {
     // ...ваш код
-    event.preventDefault();
+  event.preventDefault();
 
     const form = event.target;
     const submitButton = form.querySelector('button[type="submit"]');
@@ -184,9 +187,12 @@ export default class Cart {
       method: 'POST',
       body: formData
     })  
-    .then(response => response.json())  
+    .then(response => response.json())
     .then(data => {
+      
+
       this.modal.setTitle('Success!');  
+      //console.log('Success:', data);
       this.cartItems = [];
       this.modal.setBody(createElement(`
         <div class="modal__body-inner">
@@ -195,14 +201,13 @@ export default class Cart {
       `));
       this.cartIcon.update(this);
     })
-    
     .catch(error => {
-      console.error('Error:', error); 
-
+      console.error('Error:', error);
     }); 
     this.modal.elem.querySelector('button[type="submit"]').classList.remove('is-loading');
+   
   };
-
+  
   addEventListeners() {
     this.cartIcon.elem.onclick = () => this.renderModal();
   }
